@@ -1,0 +1,4693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<meta name="theme-color" content="#7654e8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Boxing Memory">
+
+<title>Boxing Memory — ذاكرتي للكيك بوكسينغ</title>
+
+<link rel="manifest" href="./manifest.json">
+
+<link
+  rel="apple-touch-icon"
+  href="./AED5A342-A9AB-4969-88BA-3C9E7AF7949F.png"
+>
+
+<link
+  rel="icon"
+  type="image/png"
+  href="./AED5A342-A9AB-4969-88BA-3C9E7AF7949F.png"
+>
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+:root {
+    --purple: #7654e8;
+    --purple-dark: #5338b8;
+    --purple-light: #eeeaff;
+    --lavender: #f7f5ff;
+    --pink: #ff78a8;
+    --green: #28a96b;
+    --green-light: #e8f8ef;
+    --yellow: #f3b83f;
+    --yellow-light: #fff6dc;
+    --red: #e85d68;
+    --red-light: #ffecef;
+    --blue: #4e8ee8;
+    --blue-light: #eaf2ff;
+    --text: #24222d;
+    --muted: #777383;
+    --border: #e8e4f2;
+    --white: #ffffff;
+    --shadow: 0 10px 35px rgba(73, 50, 130, 0.09);
+    --radius: 22px;
+    --radius-small: 14px;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(118,84,232,0.08),
+            transparent 32%
+        ),
+        var(--lavender);
+    color: var(--text);
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+    min-height: 100vh;
+    padding-bottom: 90px;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(247,245,255,0.94);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(118,84,232,0.08);
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 15px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.brand-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 6px 20px rgba(118,84,232,0.18);
+}
+
+.brand-text h1 {
+    font-size: 17px;
+    margin: 0;
+    font-weight: 900;
+}
+
+.brand-text p {
+    margin: 2px 0 0;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.header-action {
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    color: var(--purple);
+    font-size: 19px;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.section-title {
+    margin: 10px 0 5px;
+    font-size: 25px;
+    font-weight: 950;
+}
+
+.section-subtitle {
+    margin: 0 0 18px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(118,84,232,0.98),
+            rgba(151,116,241,0.96)
+        );
+    color: white;
+    border-radius: 30px;
+    padding: 24px;
+    box-shadow: 0 20px 50px rgba(89,62,180,0.22);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    left: -50px;
+    bottom: -80px;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    right: -25px;
+    top: -40px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h2 {
+    margin: 0 0 8px;
+    font-size: 27px;
+    font-weight: 950;
+}
+
+.hero p {
+    margin: 0;
+    line-height: 1.8;
+    opacity: 0.92;
+    font-size: 13px;
+}
+
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 9px;
+    margin-top: 18px;
+}
+
+.hero-stat {
+    background: rgba(255,255,255,0.13);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 17px;
+    padding: 12px 8px;
+    text-align: center;
+}
+
+.hero-stat strong {
+    display: block;
+    font-size: 22px;
+}
+
+.hero-stat span {
+    font-size: 10px;
+    opacity: .85;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+    border: none;
+    border-radius: 15px;
+    padding: 11px 16px;
+    font-weight: 800;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.btn:active {
+    transform: scale(.96);
+}
+
+.btn-primary {
+    background: var(--purple);
+    color: white;
+    box-shadow: 0 7px 18px rgba(118,84,232,.2);
+}
+
+.btn-secondary {
+    background: var(--purple-light);
+    color: var(--purple-dark);
+}
+
+.btn-white {
+    background: white;
+    color: var(--purple-dark);
+}
+
+.btn-danger {
+    background: var(--red-light);
+    color: #b92e3d;
+}
+
+.btn-success {
+    background: var(--green-light);
+    color: #16804d;
+}
+
+.btn-small {
+    padding: 8px 11px;
+    border-radius: 11px;
+    font-size: 12px;
+}
+
+/* =========================================================
+   DASHBOARD GRID
+========================================================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.dashboard-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 17px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform .18s ease;
+}
+
+.dashboard-card:active {
+    transform: scale(.98);
+}
+
+.dashboard-card .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 15px;
+    background: var(--purple-light);
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.dashboard-card h3 {
+    margin: 0 0 5px;
+    font-size: 14px;
+}
+
+.dashboard-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.toolbar {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 180px;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: white;
+    border-radius: 15px;
+    padding: 12px 42px 12px 13px;
+    outline: none;
+}
+
+.search-box span {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+}
+
+.select-control {
+    border: 1px solid var(--border);
+    background: white;
+    border-radius: 15px;
+    padding: 0 13px;
+    outline: none;
+    color: var(--text);
+}
+
+/* =========================================================
+   CATEGORY CHIPS
+========================================================= */
+
+.chips {
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    scrollbar-width: none;
+}
+
+.chips::-webkit-scrollbar {
+    display: none;
+}
+
+.chip {
+    white-space: nowrap;
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--muted);
+    border-radius: 30px;
+    padding: 8px 13px;
+    font-size: 11px;
+    font-weight: 750;
+}
+
+.chip.active {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: white;
+}
+
+/* =========================================================
+   MOVEMENT GRID
+========================================================= */
+
+.moves-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px;
+}
+
+.move-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform .18s ease;
+}
+
+.move-card:active {
+    transform: scale(.985);
+}
+
+.move-visual {
+    background:
+        radial-gradient(
+            circle at center,
+            #ffffff,
+            #f0edff
+        );
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.move-level {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    background: rgba(255,255,255,.92);
+    border-radius: 10px;
+    padding: 5px 8px;
+    font-size: 9px;
+    font-weight: 900;
+    color: var(--purple-dark);
+}
+
+.move-info {
+    padding: 13px;
+}
+
+.move-info h3 {
+    font-size: 14px;
+    margin: 0 0 4px;
+}
+
+.move-info .english {
+    direction: ltr;
+    text-align: left;
+    color: var(--purple);
+    font-weight: 850;
+    font-size: 11px;
+    margin-bottom: 6px;
+}
+
+.move-info p {
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.6;
+    margin: 0 0 10px;
+}
+
+.move-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.move-actions button {
+    flex: 1;
+    border: none;
+    border-radius: 11px;
+    padding: 8px 4px;
+    font-size: 10px;
+    font-weight: 800;
+}
+</style>
+
+<script>
+/* =========================================================
+   SVG FIGHTER — REALISTIC CLASSIC CARTOON BOXING MEMORY
+   Pink = attacker
+   Black = defender
+   Female fighters with tied-back hair
+   Each move has its own clear anatomical pose
+========================================================= */
+
+function poseSVG(move, animated = false, active = false) {
+
+    const type = move?.type || "guard";
+    const side = move?.side || "lead";
+
+    const skin = "#E7AD86";
+    const skinLight = "#F3C3A1";
+    const skinDark = "#C98261";
+
+    const outline = "#30283D";
+
+    const pink = "#F05A78";
+    const pinkDark = "#C83F5C";
+
+    const black = "#25232B";
+    const blackLight = "#3C3945";
+
+    const glovePink = "#FF4F70";
+    const gloveBlack = "#17161B";
+
+    const shoe = "#F7F5FA";
+    const shoeDark = "#CFC9D8";
+
+    let attacker = true;
+
+    /*
+       The SVG is designed as a paired scene:
+       Pink fighter = attacker
+       Black fighter = defender
+    */
+
+    const isDefense =
+        [
+            "guard",
+            "shell",
+            "parry",
+            "check",
+            "slip-left",
+            "slip-right",
+            "roll-left",
+            "roll-right"
+        ].includes(type);
+
+    let pinkPose = {
+        x: 72,
+        y: 0,
+        rotate: 0
+    };
+
+    let blackPose = {
+        x: 0,
+        y: 0,
+        rotate: 0
+    };
+
+    let pinkHead = {
+        x: 69,
+        y: 39,
+        rotate: 0
+    };
+
+    let blackHead = {
+        x: 145,
+        y: 39,
+        rotate: 0
+    };
+
+    let pinkLeftArm = `
+        M55 69
+        Q48 76 44 89
+        L39 101
+    `;
+
+    let pinkRightArm = `
+        M84 69
+        Q91 76 96 88
+        L101 100
+    `;
+
+    let blackLeftArm = `
+        M131 69
+        Q124 76 119 88
+        L114 100
+    `;
+
+    let blackRightArm = `
+        M160 69
+        Q167 76 172 88
+        L177 100
+    `;
+
+    let pinkLeftGlove = [39,101,0];
+    let pinkRightGlove = [101,100,0];
+
+    let blackLeftGlove = [114,100,0];
+    let blackRightGlove = [177,100,0];
+
+    let pinkLeftLeg = `
+        M58 116
+        L49 144
+        L42 169
+    `;
+
+    let pinkRightLeg = `
+        M82 116
+        L91 144
+        L99 169
+    `;
+
+    let blackLeftLeg = `
+        M134 116
+        L125 144
+        L117 169
+    `;
+
+    let blackRightLeg = `
+        M158 116
+        L167 144
+        L175 169
+    `;
+
+    let pinkLeftFoot = `
+        M42 168
+        Q32 168 25 173
+        L45 175
+    `;
+
+    let pinkRightFoot = `
+        M99 168
+        Q109 168 116 173
+        L96 175
+    `;
+
+    let blackLeftFoot = `
+        M117 168
+        Q107 168 100 173
+        L120 175
+    `;
+
+    let blackRightFoot = `
+        M175 168
+        Q185 168 192 173
+        L172 175
+    `;
+
+    let pinkBodyTransform = "";
+    let blackBodyTransform = "";
+
+    let pinkHeadTransform = "";
+    let blackHeadTransform = "";
+
+    let motion = "";
+    let impact = "";
+
+    /* =====================================================
+       GUARD
+    ===================================================== */
+
+    if (
+        type === "guard" ||
+        type === "high-guard"
+    ) {
+
+        blackLeftArm = `
+            M131 69
+            Q123 69 119 78
+            L123 91
+        `;
+
+        blackRightArm = `
+            M160 69
+            Q168 69 172 78
+            L168 91
+        `;
+
+        blackLeftGlove = [123,91,0];
+        blackRightGlove = [168,91,0];
+
+        motion = `
+            <path
+                class="motion-line black-motion"
+                d="M126 92 Q145 80 164 92"
+            />
+        `;
+    }
+
+    /* =====================================================
+       JAB
+    ===================================================== */
+
+    if (type === "jab") {
+
+        pinkBodyTransform =
+            side === "lead"
+                ? "rotate(-5 69 95)"
+                : "rotate(4 69 95)";
+
+        pinkHeadTransform =
+            side === "lead"
+                ? "rotate(-4 69 39)"
+                : "rotate(4 69 39)";
+
+        if (side === "lead") {
+
+            pinkLeftArm = `
+                M55 69
+                Q47 68 39 65
+                L15 58
+            `;
+
+            pinkLeftGlove = [12,57,-8];
+
+            pinkRightArm = `
+                M84 69
+                Q91 75 96 87
+                L101 99
+            `;
+
+            pinkRightGlove = [101,99,0];
+
+            blackLeftArm = `
+                M131 69
+                Q123 72 120 82
+                L123 93
+            `;
+
+            blackRightArm = `
+                M160 69
+                Q168 72 171 82
+                L168 93
+            `;
+
+            blackLeftGlove = [123,93,0];
+            blackRightGlove = [168,93,0];
+
+            motion = `
+                <path
+                    class="motion-line"
+                    d="M19 51 L5 47"
+                    marker-end="url(#arrowHeadPink)"
+                />
+                <path
+                    class="motion-line thin"
+                    d="M24 58 L6 58"
+                />
+                <path
+                    class="motion-line thin"
+                    d="M27 65 L8 69"
+                />
+            `;
+
+            impact = `
+                <g class="impact-pink">
+                    <path d="M10 45 L3 39"/>
+                    <path d="M8 55 L0 54"/>
+                    <path d="M10 65 L3 70"/>
+                </g>
+            `;
+        }
+    }
+
+    /* =====================================================
+       CROSS
+    ===================================================== */
+
+    if (type === "cross" || type === "punch") {
+
+        pinkBodyTransform = "rotate(-8 69 95)";
+        pinkHeadTransform = "rotate(-6 69 39)";
+
+        if (side === "rear") {
+
+            pinkRightArm = `
+                M84 69
+                Q94 64 104 66
+                L133 55
+            `;
+
+            pinkRightGlove = [136,54,-12];
+
+            pinkLeftArm = `
+                M55 69
+                Q48 75 43 87
+                L39 99
+            `;
+
+            pinkLeftGlove = [39,99,0];
+
+            motion = `
+                <path
+                    class="motion-line"
+                    d="M130 49 L153 40"
+                    marker-end="url(#arrowHeadPink)"
+                />
+                <path
+                    class="motion-line thin"
+                    d="M124 56 L149 51"
+                />
+            `;
+
+            impact = `
+                <g class="impact-pink">
+                    <path d="M139 43 L146 35"/>
+                    <path d="M145 49 L155 46"/>
+                    <path d="M143 56 L153 61"/>
+                </g>
+            `;
+        }
+    }
+
+    /* =====================================================
+       HOOK
+    ===================================================== */
+
+    if (
+        type === "hook" ||
+        type === "body-hook"
+    ) {
+
+        pinkBodyTransform = "rotate(-7 69 95)";
+        pinkHeadTransform = "rotate(-5 69 39)";
+
+        if (side === "lead") {
+
+            pinkLeftArm = `
+                M55 69
+                Q45 70 39 78
+                Q32 87 23 91
+                Q15 94 10 87
+            `;
+
+            pinkLeftGlove = [9,87,-20];
+
+            pinkRightArm = `
+                M84 69
+                Q91 75 96 88
+                L101 99
+            `;
+
+            pinkRightGlove = [101,99,0];
+
+            motion = `
+                <path
+                    class="motion-line"
+                    d="M14 82
+                       Q4 70 10 57"
+                    marker-end="url(#arrowHeadPink)"
+                />
+                <path
+                    class="motion-line thin"
+                    d="M19 89 Q5 84 3 72"
+                />
+            `;
+
+            impact = `
+                <g class="impact-pink">
+                    <path d="M8 81 L0 77"/>
+                    <path d="M8 90 L0 92"/>
+                    <path d="M13 98 L6 103"/>
+                </g>
+            `;
+        }
+    }
+
+    /* =====================================================
+       UPPERCUT
+    ===================================================== */
+
+    if (
+        type === "uppercut" ||
+        type === "body-uppercut"
+    ) {
+
+        pinkBodyTransform = "rotate(-4 69 95)";
+
+        if (side === "lead") {
+
+            pinkLeftArm = `
+                M55 69
+                Q46 79 40 94
+                Q37 83 39 72
+                Q40 62 47 55
+            `;
+
+            pinkLeftGlove = [48,53,-8];
+
+            pinkRightArm = `
+                M84 69
+                Q92 76 97 89
+                L102 99
+            `;
+
+            pinkRightGlove = [102,99,0];
+
+            motion = `
+                <path
+                    class="motion-line"
+                    d="M43 75
+                       Q31 56 43 40"
+                    marker-end="url(#arrowHeadPink)"
+                />
+                <path
+                    class="motion-line thin"
+                    d="M49 80 Q40 57 51 43"
+                />
+            `;
+
+            impact = `
+                <g class="impact-pink">
+                    <path d="M45 42 L40 33"/>
+                    <path d="M52 43 L53 33"/>
+                    <path d="M59 47 L64 39"/>
+                </g>
+            `;
+        }
+    }
+
+    /* =====================================================
+       LOW / BODY / HIGH KICKS
+    ===================================================== */
+
+    if (
+        type === "low-kick" ||
+        type === "inside-low" ||
+        type === "outside-low"
+    ) {
+
+        if (side === "lead") {
+
+            pinkLeftLeg = `
+                M58 116
+                Q46 126 38 137
+                L15 130
+            `;
+
+            pinkLeftFoot = `
+                M15 130
+                L4 126
+                Q0 128 4 132
+                L17 137
+            `;
+
+        } else {
+
+            pinkRightLeg = `
+                M82 116
+                Q94 126 102 137
+                L125 130
+            `;
+
+            pinkRightFoot = `
+                M125 130
+                L136 126
+                Q140 128 136 132
+                L123 137
+            `;
+        }
+
+        motion = `
+            <path
+                class="motion-line"
+                d="${
+                    side === "lead"
+                        ? "M18 122 L2 117"
+                        : "M122 122 L138 117"
+                }"
+                marker-end="url(#arrowHeadPink)"
+            />
+        `;
+    }
+
+    /* =====================================================
+       BODY / HIGH ROUND KICK
+    ===================================================== */
+
+    if (
+        type === "body-kick" ||
+        type === "high-kick" ||
+        type === "round-kick"
+    ) {
+
+        if (side === "lead") {
+
+            pinkLeftLeg = `
+                M58 116
+                Q43 119 35 110
+                L48 ${
+                    type === "high-kick"
+                        ? 58
+                        : 82
+                }
+            `;
+
+            pinkLeftFoot = `
+                M48 ${
+                    type === "high-kick"
+                        ? 58
+                        : 82
+                }
+                L39 ${
+                    type === "high-kick"
+                        ? 47
+                        : 72
+                }
+                Q35 ${
+                    type === "high-kick"
+                        ? 44
+                        : 69
+                } 39 ${
+                    type === "high-kick"
+                        ? 41
+                        : 67
+                }
+                L54 ${
+                    type === "high-kick"
+                        ? 53
+                        : 78
+                }
+            `;
+
+        } else {
+
+            pinkRightLeg = `
+                M82 116
+                Q97 119 105 110
+                L92 ${
+                    type === "high-kick"
+                        ? 58
+                        : 82
+                }
+            `;
+
+            pinkRightFoot = `
+                M92 ${
+                    type === "high-kick"
+                        ? 58
+                        : 82
+                }
+                L101 ${
+                    type === "high-kick"
+                        ? 47
+                        : 72
+                }
+                Q105 ${
+                    type === "high-kick"
+                        ? 44
+                        : 69
+                } 101 ${
+                    type === "high-kick"
+                        ? 41
+                        : 67
+                }
+                L86 ${
+                    type === "high-kick"
+                        ? 53
+                        : 78
+                }
+            `;
+        }
+
+        motion = `
+            <path
+                class="motion-line"
+                d="${
+                    side === "lead"
+                        ? "M51 76 Q34 56 18 48"
+                        : "M89 76 Q106 56 122 48"
+                }"
+                marker-end="url(#arrowHeadPink)"
+            />
+        `;
+    }
+
+    /* =====================================================
+       FRONT KICK / TEEP
+    ===================================================== */
+
+    if (
+        type === "front-kick" ||
+        type === "teep"
+    ) {
+
+        if (side === "lead") {
+
+            pinkLeftLeg = `
+                M58 116
+                Q47 124 37 132
+                L11 128
+            `;
+
+            pinkLeftFoot = `
+                M11 128
+                L0 125
+                Q-4 127 0 132
+                L12 136
+            `;
+
+        } else {
+
+            pinkRightLeg = `
+                M82 116
+                Q93 124 103 132
+                L129 128
+            `;
+
+            pinkRightFoot = `
+                M129 128
+                L140 125
+                Q144 127 140 132
+                L128 136
+            `;
+        }
+
+        motion = `
+            <path
+                class="motion-line"
+                d="${
+                    side === "lead"
+                        ? "M12 119 L0 115"
+                        : "M128 119 L140 115"
+                }"
+                marker-end="url(#arrowHeadPink)"
+            />
+        `;
+    }
+
+    /* =====================================================
+       SIDE KICK
+    ===================================================== */
+
+    if (type === "side-kick") {
+
+        if (side === "lead") {
+
+            pinkLeftLeg = `
+                M58 116
+                Q45 129 37 143
+                L9 127
+            `;
+
+            pinkLeftFoot = `
+                M9 127
+                L-3 117
+                Q-6 116 -7 121
+                L7 134
+            `;
+
+        } else {
+
+            pinkRightLeg = `
+                M82 116
+                Q95 129 103 143
+                L131 127
+            `;
+
+            pinkRightFoot = `
+                M131 127
+                L143 117
+                Q146 116 147 121
+                L133 134
+            `;
+        }
+
+        motion = `
+            <path
+                class="motion-line"
+                d="${
+                    side === "lead"
+                        ? "M11 119 L0 107"
+                        : "M129 119 L140 107"
+                }"
+                marker-end="url(#arrowHeadPink)"
+            />
+        `;
+    }
+
+    /* =====================================================
+       KNEE
+    ===================================================== */
+
+    if (type === "knee") {
+
+        if (side === "lead") {
+
+            pinkLeftLeg = `
+                M58 116
+                Q43 126 40 143
+                Q52 126 68 102
+            `;
+
+            pinkLeftFoot = `
+                M68 102
+                L76 95
+                L69 107
+            `;
+
+        } else {
+
+            pinkRightLeg = `
+                M82 116
+                Q97 126 100 143
+                Q88 126 72 102
+            `;
+
+            pinkRightFoot = `
+                M72 102
+                L64 95
+                L71 107
+            `;
+        }
+
+        pinkBodyTransform = "rotate(-4 69 95)";
+
+        motion = `
+            <path
+                class="motion-line"
+                d="${
+                    side === "lead"
+                        ? "M66 105 Q78 82 89 67"
+                        : "M74 105 Q62 82 51 67"
+                }"
+                marker-end="url(#arrowHeadPink)"
+            />
+        `;
+    }
+
+    /* =====================================================
+       SLIP LEFT
+    ===================================================== */
+
+    if (type === "slip-left") {
+
+        pinkHeadTransform =
+            "translate(-12 9) rotate(-10 69 39)";
+
+        pinkBodyTransform =
+            "translate(-8 5) rotate(-8 69 95)";
+
+        motion = `
+            <path
+                class="motion-line black-motion"
+                d="M111 45 Q92 52 84 69"
+                marker-end="url(#arrowHeadBlack)"
+            />
+        `;
+    }
+
+    /* =====================================================
+       SLIP RIGHT
+    ===================================================== */
+
+    if (type === "slip-right") {
+
+        pinkHeadTransform =
+            "translate(12 9) rotate(10 69 39)";
+
+        pinkBodyTransform =
+            "translate(8 5) rotate(8 69 95)";
+
+        motion = `
+            <path
+                class="motion-line black-motion"
+                d="M27 45 Q46 52 54 69"
+                marker-end="url(#arrowHeadBlack)"
+            />
+        `;
+    }
+
+    /* =====================================================
+       ROLL
+    ===================================================== */
+
+    if (
+        type === "roll-left" ||
+        type === "roll-right"
+    ) {
+
+        pinkHeadTransform =
+            type === "roll-left"
+                ? "translate(-10 24) rotate(-15 69 39)"
+                : "translate(10 24) rotate(15 69 39)";
+
+        pinkBodyTransform =
+            type === "roll-left"
+                ? "rotate(-13 69 95)"
+                : "rotate(13 69 95)";
+
+        motion = `
+            <path
+                class="motion-line black-motion"
+                d="M35 40 Q69 12 103 40"
+                marker-end="url(#arrowHeadBlack)"
+            />
+        `;
+    }
+
+    /* =====================================================
+       CHECK
+    ===================================================== */
+
+    if (type === "check") {
+
+        pinkLeftLeg = `
+            M58 116
+            Q49 127 50 139
+            Q62 130 66 119
+        `;
+
+        pinkLeftFoot = `
+            M66 119
+            L72 113
+            L68 122
+        `;
+
+        motion = `
+            <path
+                class="motion-line"
+                d="M67 125 Q58 108 51 99"
+                marker-end="url(#arrowHeadPink)"
+            />
+        `;
+    }
+
+    /* =====================================================
+       PARRY
+    ===================================================== */
+
+    if (type === "parry") {
+
+        blackLeftArm = `
+            M131 69
+            Q120 69 110 65
+            L101 58
+        `;
+
+        blackLeftGlove = [99,57,-15];
+
+        motion = `
+            <path
+                class="motion-line black-motion"
+                d="M107 62 Q96 52 88 49"
+                marker-end="url(#arrowHeadBlack)"
+            />
+        `;
+    }
+
+    /* =====================================================
+       TARGET
+    ===================================================== */
+
+    let target = "";
+
+    if (move.target === "head") {
+
+        target = `
+            <circle
+                class="target"
+                cx="145"
+                cy="39"
+                r="23"
+            />
+        `;
+
+    } else if (
+        move.target === "body" ||
+        move.target === "ribs"
+    ) {
+
+        target = `
+            <ellipse
+                class="target"
+                cx="145"
+                cy="91"
+                rx="31"
+                ry="25"
+            />
+        `;
+
+    } else if (
+        move.target === "leg" ||
+        move.target === "inner-thigh" ||
+        move.target === "outer-thigh"
+    ) {
+
+        target = `
+            <ellipse
+                class="target"
+                cx="145"
+                cy="133"
+                rx="35"
+                ry="17"
+            />
+        `;
+    }
+
+    /* =====================================================
+       ANIMATION
+    ===================================================== */
+
+    let animationClass = "";
+
+    if (animated) {
+
+        if (
+            type === "jab" ||
+            type === "cross" ||
+            type === "punch" ||
+            type === "hook" ||
+            type === "uppercut" ||
+            type === "body-punch" ||
+            type === "body-hook" ||
+            type === "body-uppercut" ||
+            type === "overhand"
+        ) {
+
+            animationClass = "boxing-punch-animation";
+
+        } else if (
+            type.includes("kick") ||
+            type === "teep" ||
+            type === "front-kick"
+        ) {
+
+            animationClass = "boxing-kick-animation";
+
+        } else if (type === "knee") {
+
+            animationClass = "boxing-knee-animation";
+
+        } else if (
+            type === "slip-left" ||
+            type === "slip-right"
+        ) {
+
+            animationClass = "boxing-slip-animation";
+
+        } else if (
+            type === "roll-left" ||
+            type === "roll-right"
+        ) {
+
+            animationClass = "boxing-roll-animation";
+        }
+    }
+
+    return `
+
+<svg
+    class="fighter-svg boxing-scene-svg"
+    viewBox="0 0 200 185"
+    role="img"
+    aria-label="${escapeHTML(move.ar || move.en || "Boxing movement")}"
+>
+
+<defs>
+
+    <marker
+        id="arrowHeadPink"
+        markerWidth="9"
+        markerHeight="9"
+        refX="7"
+        refY="4"
+        orient="auto"
+    >
+        <path
+            d="M0 0 L0 8 L9 4 Z"
+            fill="${pink}"
+        />
+    </marker>
+
+    <marker
+        id="arrowHeadBlack"
+        markerWidth="9"
+        markerHeight="9"
+        refX="7"
+        refY="4"
+        orient="auto"
+    >
+        <path
+            d="M0 0 L0 8 L9 4 Z"
+            fill="${black}"
+        />
+    </marker>
+
+</defs>
+
+<!-- =====================================================
+     TARGET / MOTION
+====================================================== -->
+
+${target}
+${motion}
+${impact}
+
+<!-- =====================================================
+     PINK ATTACKER
+====================================================== -->
+
+<g
+    class="${animationClass}"
+    transform="${pinkBodyTransform}"
+>
+
+    <!-- tied-back ponytail -->
+
+    <path
+        d="
+            M78 29
+            Q88 20 91 28
+            Q99 22 102 28
+            Q92 30 88 38
+            Q82 35 78 29
+        "
+        fill="${pink}"
+        stroke="${outline}"
+        stroke-width="2"
+    />
+
+    <!-- ponytail -->
+
+    <path
+        d="
+            M83 27
+            Q101 17 108 27
+            Q102 35 91 37
+            Q103 40 108 47
+            Q95 46 87 39
+            Z
+        "
+        fill="${pink}"
+        stroke="${outline}"
+        stroke-width="2"
+    />
+
+    <!-- neck -->
+
+    <path
+        d="
+            M61 52
+            L61 67
+            Q69 72 77 67
+            L77 52
+            Z
+        "
+        fill="${skinDark}"
+        stroke="${outline}"
+        stroke-width="2"
+    />
+
+    <!-- head -->
+
+    <g transform="${pinkHeadTransform}">
+
+        <circle
+            cx="69"
+            cy="39"
+            r="18"
+            fill="${skin}"
+            stroke="${outline}"
+            stroke-width="2.2"
+        />
+
+        <!-- front hair -->
+
+        <path
+            d="
+                M52 39
+                Q51 20 68 18
+                Q85 18 86 37
+                Q78 27 69 29
+                Q60 29 52 39
+                Z
+            "
+            fill="${pink}"
+            stroke="${outline}"
+            stroke-width="1.5"
+        />
+
+        <!-- hair highlight -->
+
+        <path
+            d="M56 28 Q64 20 72 20"
+            fill="none"
+            stroke="#FF8FA4"
+            stroke-width="2"
+            stroke-linecap="round"
+        />
+
+        <!-- ear -->
+
+        <circle
+            cx="84"
+            cy="42"
+            r="4"
+            fill="${skinLight}"
+        />
+
+        <!-- face -->
+
+        <path
+            d="M76 42 Q80 44 76 45"
+            fill="none"
+            stroke="${outline}"
+            stroke-width="1.4"
+        />
+
+        <path
+            d="M64 47 Q69 50 74 47"
+            fill="none"
+            stroke="${skinDark}"
+            stroke-width="1.5"
+            stroke-linecap="round"
+        />
+
+    </g>
+
+    <!-- torso -->
+
+    <path
+        d="
+            M58 65
+            Q69 59 80 65
+            L88 103
+            Q69 113 50 103
+            Z
+        "
+        fill="${pink}"
+        stroke="${outline}"
+        stroke-width="2.3"
+    />
+
+    <!-- sports bra -->
+
+    <path
+        d="
+            M58 66
+            Q69 73 80 66
+            L78 82
+            Q69 87 60 82
+            Z
+        "
+        fill="${pinkDark}"
+        stroke="${outline}"
+        stroke-width="1.8"
+    />
+
+    <!-- shoulder straps -->
+
+    <path
+        d="M61 64 L65 76"
+        stroke="#FF91A5"
+        stroke-width="3"
+        stroke-linecap="round"
+    />
+
+    <path
+        d="M77 64 L73 76"
+        stroke="#FF91A5"
+        stroke-width="3"
+        stroke-linecap="round"
+    />
+
+    <!-- left arm -->
+
+    <path
+        d="${pinkLeftArm}"
+        fill="none"
+        stroke="${skin}"
+        stroke-width="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+
+    <path
+        d="${pinkLeftArm}"
+        fill="none"
+        stroke="${skinLight}"
+        stroke-width="3"
+        stroke-linecap="round"
+        opacity=".45"
+    />
+
+    <!-- right arm -->
+
+    <path
+        d="${pinkRightArm}"
+        fill="none"
+        stroke="${skin}"
+        stroke-width="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+
+    <path
+        d="${pinkRightArm}"
+        fill="none"
+        stroke="${skinLight}"
+        stroke-width="3"
+        stroke-linecap="round"
+        opacity=".45"
+    />
+
+    <!-- left glove -->
+
+    <g
+        transform="
+            translate(
+                ${pinkLeftGlove[0]}
+                ${pinkLeftGlove[1]}
+            )
+            rotate(${pinkLeftGlove[2]})
+        "
+    >
+
+        <ellipse
+            cx="0"
+            cy="0"
+            rx="9"
+            ry="8"
+            fill="${glovePink}"
+            stroke="${outline}"
+            stroke-width="2"
+        />
+
+        <path
+            d="
+                M-6 -4
+                Q-2 -10 5 -6
+                L8 -1
+                Q2 2 -5 1
+            "
+            fill="#FF8196"
+            opacity=".75"
+        />
+
+    </g>
+
+    <!-- right glove -->
+
+    <g
+        transform="
+            translate(
+                ${pinkRightGlove[0]}
+                ${pinkRightGlove[1]}
+            )
+            rotate(${pinkRightGlove[2]})
+        "
+    >
+
+        <ellipse
+            cx="0"
+            cy="0"
+            rx="9"
+            ry="8"
+            fill="${glovePink}"
+            stroke="${outline}"
+            stroke-width="2"
+        />
+
+        <path
+            d="
+                M-6 -4
+                Q-2 -10 5 -6
+                L8 -1
+                Q2 2 -5 1
+            "
+            fill="#FF8196"
+            opacity=".75"
+        />
+
+    </g>
+
+    <!-- shorts -->
+
+    <path
+        d="
+            M50 101
+            Q69 108 88 101
+            L91 120
+            Q80 125 69 120
+            Q58 125 47 120
+            Z
+        "
+        fill="${pinkDark}"
+        stroke="${outline}"
+        stroke-width="2.2"
+    />
+
+    <!-- legs -->
+
+    <path
+        d="${pinkLeftLeg}"
+        fill="none"
+        stroke="${skin}"
+        stroke-width="12"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+
+    <path
+        d="${pinkRightLeg}"
+        fill="none"
+        stroke="${skin}"
+        stroke-width="12"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+
+    <!-- shoes -->
+
+    <path
+        d="${pinkLeftFoot}"
+        fill="${shoe}"
+        stroke="${outline}"
+        stroke-width="2"
+    />
+
+    <path
+        d="${pinkRightFoot}"
+        fill="${shoe}"
+        stroke="${outline}"
+        stroke-width="2"
+    />
+
+</g>
+
+<!-- =====================================================
+     BLACK DEFENDER
+====================================================== -->
+
+<g
+    transform="${blackBodyTransform}"
+>
+
+    <!-- tied-back hair -->
+
+    <path
+        d="
+            M132 28
+            Q148 18 159 27
+            Q169 24 175 30
+            Q164 35 158 39
+            Q149 34 139 37
+            Z
+        "
+        fill="${black}"
+        stroke="${outline}"
+        stroke-width="2"
+    />
+
+    <!-- ponytail -->
+
+    <path
+        d="
+            M158 26
+            Q176 16 187 26
+            Q179 34 166 37
+            Q180 39 186 47
+            Q171 45 162 38
+            Z
+        "
+        fill="${black}"
+        stroke="${outline}"
+        stroke-width="2"
+    />
+
+    <!-- neck -->
+
+    <path
+        d="
+            M137 52
+            L137 67
+            Q145 72 153 67
+            L153 52
+            Z
+        "
+        fill="${skinDark}"
+        stroke="${outline}"
+        stroke-width="2"
+    />
+
+    <!-- head -->
+
+    <g transform="${blackHeadTransform}">
+
+        <circle
+            cx="145"
+            cy="39"
+            r="18"
+            fill="${skin}"
+            stroke="${outline}"
+            stroke-width="2.2"
+        />
+
+        <!-- black hair -->
+
+        <path
+            d="
+                M128 39
+                Q127 20 144 18
+                Q161 18 162 37
+                Q154 27 145 29
+                Q136 29 128 39
+                Z
+            "
+            fill="${black}"
+        />
+
+        <path
+            d="M132 28 Q140 20 148 20"
+            fill="none"
+            stroke="${blackLight}"
+            stroke-width="2"
+            stroke-linecap="round"
+        />
+
+        <!-- ear -->
+
+        <circle
+            cx="160"
+            cy="42"
+            r="4"
+            fill="${skinLight}"
+        />
+
+        <!-- face -->
+
+        <path
+            d="M152 42 Q156 44 152 45"
+            fill="none"
+            stroke="${outline}"
+            stroke-width="1.4"
+        />
+
+        <path
+            d="M140 47 Q145 50 150 47"
+            fill="none"
+            stroke="${skinDark}"
+            stroke-width="1.5"
+            stroke-linecap="round"
+        />
+
+    </g>
+
+    <!-- black sports bra -->
+
+    <path
+        d="
+            M134 65
+            Q145 59 156 65
+            L164 103
+            Q145 113 126 103
+            Z
+        "
+        fill="${black}"
+        stroke="${outline}"
+        stroke-width="2.3"
+    />
+
+    <!-- bra straps -->
+
+    <path
+        d="M137 64 L141 76"
+        stroke="${blackLight}"
+        stroke-width="3"
+        stroke-linecap="round"
+    />
+
+    <path
+        d="M153 64 L149 76"
+        stroke="${blackLight}"
+        stroke-width="3"
+        stroke-linecap="round"
+    />
+
+    <!-- arms -->
+
+    <path
+        d="${blackLeftArm}"
+        fill="none"
+        stroke="${skin}"
+        stroke-width="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+
+    <path
+        d="${blackRightArm}"
+        fill="none"
+        stroke="${skin}"
+        stroke-width="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+
+    <!-- gloves -->
+
+    <g
+        transform="
+            translate(
+                ${blackLeftGlove[0]}
+                ${blackLeftGlove[1]}
+            )
+            rotate(${blackLeftGlove[2]})
+        "
+    >
+
+        <ellipse
+            cx="0"
+            cy="0"
+            rx="9"
+            ry="8"
+            fill="${gloveBlack}"
+            stroke="${outline}"
+            stroke-width="2"
+        />
+
+        <path
+            d="M-6 -3 Q0 -9 6 -4"
+            fill="none"
+            stroke="${blackLight}"
+            stroke-width="2"
+        />
+
+    </g>
+
+    <g
+        transform="
+            translate(
+                ${blackRightGlove[0]}
+                ${blackRightGlove[1]}
+            )
+            rotate(${blackRightGlove[2]})
+        "
+    >
+
+        <ellipse
+            cx="0"
+            cy="0"
+            rx="9"
+            ry="8"
+            fill="${gloveBlack}"
+            stroke="${outline}"
+            stroke-width="2"
+        />
+
+        <path
+            d="M-6 -3 Q0 -9 6 -4"
+            fill="none"
+            stroke="${blackLight}"
+            stroke-width="2"
+        />
+
+    </g>
+
+    <!-- shorts -->
+
+    <path
+        d="
+            M126 101
+            Q145 108 164 101
+            L167 120
+            Q156 125 145 120
+            Q134 125 123 120
+            Z
+        "
+        fill="${black}"
+        stroke="${outline}"
+        stroke-width="2.2"
+    />
+
+    <!-- legs -->
+
+    <path
+        d="${blackLeftLeg}"
+        fill="none"
+        stroke="${skin}"
+        stroke-width="12"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+
+    <path
+        d="${blackRightLeg}"
+        fill="none"
+        stroke="${skin}"
+        stroke-width="12"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+
+    <!-- shoes -->
+
+    <path
+        d="${blackLeftFoot}"
+        fill="${shoe}"
+        stroke="${outline}"
+        stroke-width="2"
+    />
+
+    <path
+        d="${blackRightFoot}"
+        fill="${shoe}"
+        stroke="${outline}"
+        stroke-width="2"
+    />
+
+</g>
+
+<!-- =====================================================
+     VISUAL LABELS
+====================================================== -->
+
+<g>
+
+    <circle
+        cx="69"
+        cy="8"
+        r="5"
+        fill="${pink}"
+    />
+
+    <text
+        x="78"
+        y="11"
+        font-size="6"
+        font-weight="800"
+        fill="${outline}"
+    >
+        ATTACK
+    </text>
+
+    <circle
+        cx="137"
+        cy="8"
+        r="5"
+        fill="${black}"
+    />
+
+    <text
+        x="146"
+        y="11"
+        font-size="6"
+        font-weight="800"
+        fill="${outline}"
+    >
+        DEFENSE
+    </text>
+
+</g>
+
+</svg>
+
+`;
+}
+
+/* =========================================================
+   RENDER MOVES
+========================================================= */
+
+function renderMoves() {
+
+    const grid =
+        document.getElementById("movesGrid");
+
+    if (!grid) return;
+
+
+    const search =
+        (
+            document
+                .getElementById("moveSearch")
+                ?.value || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    const level =
+        document
+            .getElementById("levelFilter")
+            ?.value || "all";
+
+
+    let list =
+        MOVES.filter(move => {
+
+            const categoryOK =
+                activeCategory === "الكل" ||
+                move.cat === activeCategory;
+
+
+            const levelOK =
+                level === "all" ||
+                move.level === level;
+
+
+            const searchOK =
+                !search ||
+                move.ar.toLowerCase().includes(search) ||
+                move.en.toLowerCase().includes(search) ||
+                move.cat.toLowerCase().includes(search);
+
+
+            return (
+                categoryOK &&
+                levelOK &&
+                searchOK
+            );
+
+        });
+
+
+    if (!list.length) {
+
+        grid.innerHTML = `
+
+            <div
+                class="empty-state"
+                style="grid-column:1/-1;"
+            >
+
+                <div class="empty-icon">
+                    🔎
+                </div>
+
+                <h3>
+                    ما لقيتش الحركة
+                </h3>
+
+                <p>
+                    جربي كلمة أخرى أو اختاري تصنيفاً مختلفاً.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+        list
+            .map(move => {
+
+                const learned =
+                    !!state.learned[move.id];
+
+
+                return `
+
+                    <article
+                        class="move-card"
+                        data-id="${escapeHTML(move.id)}"
+                    >
+
+                        <div class="move-visual">
+
+                            <span class="move-level">
+                                ${escapeHTML(move.level)}
+                            </span>
+
+                            ${poseSVG(move,true)}
+
+                        </div>
+
+
+                        <div class="move-info">
+
+                            <h3>
+                                ${escapeHTML(move.ar)}
+                            </h3>
+
+                            <div class="english">
+                                ${escapeHTML(move.en)}
+                            </div>
+
+                            <p>
+                                ${escapeHTML(move.desc)}
+                            </p>
+
+
+                            <div class="move-actions">
+
+                                <button
+                                    style="
+                                        background:#eeeaff;
+                                        color:#5b3ec4;
+                                    "
+                                    onclick="openMove('${escapeHTML(move.id)}')"
+                                >
+                                    👁️ الحركة
+                                </button>
+
+
+                                <button
+                                    style="
+                                        background:#e8f8ef;
+                                        color:#16804d;
+                                    "
+                                    onclick="addMoveToBuilder('${escapeHTML(move.id)}')"
+                                >
+                                    ＋ Series
+                                </button>
+
+                            </div>
+
+
+                            ${
+                                learned
+                                    ? `
+                                        <div
+                                            style="
+                                                margin-top:8px;
+                                                color:#16804d;
+                                                font-size:9px;
+                                                font-weight:900;
+                                            "
+                                        >
+                                            ✓ تعلمتها
+                                        </div>
+                                    `
+                                    : ""
+                            }
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            })
+            .join("");
+
+}
+
+
+/* =========================================================
+   OPEN MOVE
+========================================================= */
+
+function getMove(id) {
+
+    return MOVES.find(
+        move => move.id === id
+    );
+
+}
+
+
+function openMove(id) {
+
+    const move =
+        getMove(id);
+
+    if (!move) return;
+
+
+    document.getElementById(
+        "modalMoveName"
+    ).textContent =
+        move.ar;
+
+
+    document.getElementById(
+        "modalMoveVisual"
+    ).innerHTML =
+        poseSVG(move,true,true);
+
+
+    document.getElementById(
+        "modalMoveMeta"
+    ).innerHTML = `
+
+        <span class="meta-pill">
+            🇬🇧 ${escapeHTML(move.en)}
+        </span>
+
+        <span class="meta-pill">
+            ${escapeHTML(move.cat)}
+        </span>
+
+        <span class="meta-pill">
+            ${escapeHTML(move.level)}
+        </span>
+
+        <span class="meta-pill">
+            🎯 ${escapeHTML(move.target)}
+        </span>
+
+        <span class="meta-pill">
+            🦵 ${escapeHTML(move.side)}
+        </span>
+
+    `;
+
+
+    document.getElementById(
+        "modalMoveDescription"
+    ).textContent =
+        move.desc;
+
+
+    document.getElementById(
+        "modalAddSeriesBtn"
+    ).onclick = () => {
+
+        addMoveToBuilder(move.id);
+
+        closeModal("moveModal");
+
+        showToast(
+            "تمت إضافة الحركة للـ Series 🔥"
+        );
+
+    };
+
+
+    document.getElementById(
+        "modalLearnBtn"
+    ).onclick = () => {
+
+        toggleLearned(move.id);
+
+    };
+
+
+    openModal("moveModal");
+
+}
+
+
+/* =========================================================
+   LEARNED
+========================================================= */
+
+function toggleLearned(id) {
+
+    state.learned[id] =
+        !state.learned[id];
+
+    saveState();
+
+    renderMoves();
+
+    showToast(
+        state.learned[id]
+            ? "✓ تسجلت كحركة تعلمتيها"
+            : "تم إلغاء علامة التعلم"
+    );
+
+}
+
+
+/* =========================================================
+   SERIES BUILDER STATE
+========================================================= */
+
+let builder = [];
+
+let seriesSpeed = 1;
+
+let seriesTimer = null;
+
+let seriesPlaying = false;
+
+let seriesIndex = 0;
+
+
+/* =========================================================
+   ADD TO BUILDER
+========================================================= */
+
+function addMoveToBuilder(id) {
+
+    const move =
+        getMove(id);
+
+    if (!move) return;
+
+
+    builder.push(id);
+
+
+    saveBuilderSession();
+
+    renderBuilder();
+
+    showToast(
+        `＋ ${move.ar}`
+    );
+
+
+    showSection("series");
+
+}
+
+
+function removeBuilderItem(index) {
+
+    if (
+        index < 0 ||
+        index >= builder.length
+    ) return;
+
+
+    builder.splice(index,1);
+
+    saveBuilderSession();
+
+    renderBuilder();
+
+}
+
+
+function clearBuilder() {
+
+    stopSeriesPlayback();
+
+    builder = [];
+
+    saveBuilderSession();
+
+    renderBuilder();
+
+    showToast(
+        "تم مسح الـ Series الحالية"
+    );
+
+}
+
+
+/* =========================================================
+   BUILDER SESSION
+========================================================= */
+
+function saveBuilderSession() {
+
+    sessionStorage.setItem(
+        "boxing_builder",
+        JSON.stringify(builder)
+    );
+
+}
+
+
+function loadBuilderSession() {
+
+    try {
+
+        const saved =
+            sessionStorage.getItem(
+                "boxing_builder"
+            );
+
+        if (saved) {
+
+            const parsed =
+                JSON.parse(saved);
+
+            if (Array.isArray(parsed)) {
+
+                builder = parsed.filter(
+                    id => !!getMove(id)
+                );
+
+            }
+
+        }
+
+    } catch (error) {
+
+        builder = [];
+
+    }
+
+}
+
+
+/* =========================================================
+   RENDER BUILDER
+========================================================= */
+
+function renderBuilder() {
+
+    const strip =
+        document.getElementById(
+            "builderStrip"
+        );
+
+    if (!strip) return;
+
+
+    if (!builder.length) {
+
+        strip.innerHTML = `
+
+            <div class="series-empty">
+
+                لم تضيفي أي حركة بعد 🥊
+
+                <br>
+
+                اذهبي إلى قسم الحركات واضغطي
+                <strong>＋ Series</strong>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    strip.innerHTML =
+        builder
+            .map((id,index) => {
+
+                const move =
+                    getMove(id);
+
+                if (!move) return "";
+
+
+                return `
+
+                    <div class="series-mini-card">
+
+                        <button
+                            class="remove-mini"
+                            onclick="removeBuilderItem(${index})"
+                        >
+                            ×
+                        </button>
+
+
+                        <div class="mini-visual">
+
+                            ${poseSVG(move,true)}
+
+                        </div>
+
+
+                        <div class="mini-name">
+
+                            ${index + 1}.
+                            ${escapeHTML(move.ar)}
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            })
+            .join("");
+
+}
+
+
+/* =========================================================
+   SERIES SPEED
+========================================================= */
+
+function setSeriesSpeed(
+    speed,
+    button
+) {
+
+    seriesSpeed = speed;
+
+
+    document
+        .querySelectorAll(
+            ".series-speed button"
+        )
+        .forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    if (button) {
+
+        button.classList.add("active");
+
+    }
+
+
+    if (seriesPlaying) {
+
+        playCurrentSeries();
+
+    }
+
+}
+
+
+/* =========================================================
+   PLAY SERIES
+========================================================= */
+
+function playCurrentSeries() {
+
+    if (!builder.length) {
+
+        showToast(
+            "أضيفي حركات للـ Series أولاً 🥊"
+        );
+
+        return;
+
+    }
+
+
+    stopSeriesPlayback();
+
+
+    const player =
+        document.getElementById(
+            "seriesPlayer"
+        );
+
+
+    player.classList.remove("hidden");
+
+
+    seriesPlaying = true;
+
+    seriesIndex = 0;
+
+
+    showSeriesFrame();
+
+
+    const duration =
+        1500 / seriesSpeed;
+
+
+    seriesTimer =
+        setInterval(() => {
+
+            seriesIndex++;
+
+
+            if (
+                seriesIndex >=
+                builder.length
+            ) {
+
+                seriesIndex = 0;
+
+            }
+
+
+            showSeriesFrame();
+
+        },duration);
+
+}
+
+
+function showSeriesFrame() {
+
+    const id =
+        builder[seriesIndex];
+
+    const move =
+        getMove(id);
+
+    if (!move) return;
+
+
+    document.getElementById(
+        "seriesAnimationVisual"
+    ).innerHTML =
+        poseSVG(
+            move,
+            true,
+            true
+        );
+
+
+    document.getElementById(
+        "seriesCurrentLabel"
+    ).textContent =
+
+        `${seriesIndex + 1} / ${builder.length} — ${move.en}`;
+
+}
+
+
+function stopSeriesPlayback() {
+
+    if (seriesTimer) {
+
+        clearInterval(seriesTimer);
+
+        seriesTimer = null;
+
+    }
+
+
+    seriesPlaying = false;
+
+}
+
+
+/* =========================================================
+   SAVE SERIES
+========================================================= */
+
+function saveCurrentSeries() {
+
+    if (!builder.length) {
+
+        showToast(
+            "لا توجد حركات للحفظ"
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "seriesNameInput"
+    ).value =
+        `Series ${String(
+            state.series.length + 1
+        ).padStart(2,"0")}`;
+
+
+    openModal(
+        "saveSeriesModal"
+    );
+
+}
+
+
+function confirmSaveSeries() {
+
+    const input =
+        document.getElementById(
+            "seriesNameInput"
+        );
+
+
+    const name =
+        input.value.trim();
+
+
+    if (!name) {
+
+        showToast(
+            "اكتبي اسم الـ Series"
+        );
+
+        return;
+
+    }
+
+
+    const newSeries = {
+
+        id:
+            "series_" +
+            Date.now() +
+            "_" +
+            Math.random()
+                .toString(36)
+                .slice(2,8),
+
+        name,
+
+        moves: [...builder],
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    state.series.unshift(
+        newSeries
+    );
+
+
+    saveState();
+
+    closeModal(
+        "saveSeriesModal"
+    );
+
+
+    renderSavedSeries();
+
+    renderTracking();
+
+    updateHomeStats();
+
+
+    showToast(
+        "💾 تم حفظ الـ Series"
+    );
+
+}
+
+
+/* =========================================================
+   SAVED SERIES
+========================================================= */
+
+function renderSavedSeries() {
+
+    const container =
+        document.getElementById(
+            "savedSeries"
+        );
+
+    if (!container) return;
+
+
+    if (!state.series.length) {
+
+        container.innerHTML = `
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    🔥
+                </div>
+
+                <h3>
+                    لا توجد Series محفوظة
+                </h3>
+
+                <p>
+                    ابنِي أول Series من قسم الحركات.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        state.series
+            .map(series => {
+
+                const rating =
+                    state.ratings[series.id] ||
+                    {};
+
+
+                return `
+
+                    <article
+                        class="saved-series-card"
+                    >
+
+                        <div
+                            class="saved-series-header"
+                        >
+
+                            <div>
+
+                                <h3>
+                                    🔥
+                                    ${escapeHTML(series.name)}
+                                </h3>
+
+                                <small>
+                                    ${series.moves.length}
+                                    حركات
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="saved-series-visuals"
+                        >
+
+                            ${
+
+                                series.moves
+                                    .map(id => {
+
+                                        const move =
+                                            getMove(id);
+
+                                        if (!move)
+                                            return "";
+
+                                        return `
+
+                                            <div
+                                                class="saved-mini"
+                                                title="${escapeHTML(move.ar)}"
+                                            >
+                                                ${poseSVG(
+                                                    move,
+                                                    true
+                                                )}
+                                            </div>
+
+                                        `;
+
+                                    })
+                                    .join("")
+
+                            }
+
+                        </div>
+
+
+                        <div
+                            class="saved-series-actions"
+                        >
+
+                            <button
+                                class="btn btn-primary btn-small"
+                                onclick="playSavedSeries('${series.id}')"
+                            >
+                                ▶️ تشغيل
+                            </button>
+
+
+                            <button
+                                class="btn btn-secondary btn-small"
+                                onclick="loadSavedSeries('${series.id}')"
+                            >
+                                ✏️ تعديل
+                            </button>
+
+
+                            <button
+                                class="btn btn-success btn-small"
+                                onclick="openRating('${series.id}')"
+                            >
+                                📈 تقييم
+                            </button>
+
+
+                            <button
+                                class="btn btn-danger btn-small"
+                                onclick="deleteSeries('${series.id}')"
+                            >
+                                🗑️
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            })
+            .join("");
+
+}
+
+
+/* =========================================================
+   PLAY SAVED SERIES
+========================================================= */
+
+function playSavedSeries(id) {
+
+    const series =
+        state.series.find(
+            item => item.id === id
+        );
+
+
+    if (!series) return;
+
+
+    builder =
+        [...series.moves];
+
+    saveBuilderSession();
+
+    renderBuilder();
+
+    showSection("series");
+
+    setTimeout(() => {
+
+        playCurrentSeries();
+
+    },250);
+
+}
+
+
+/* =========================================================
+   LOAD SAVED SERIES
+========================================================= */
+
+function loadSavedSeries(id) {
+
+    const series =
+        state.series.find(
+            item => item.id === id
+        );
+
+
+    if (!series) return;
+
+
+    stopSeriesPlayback();
+
+    builder =
+        [...series.moves];
+
+    saveBuilderSession();
+
+    renderBuilder();
+
+    showToast(
+        "تم تحميل الـ Series للتعديل ✏️"
+    );
+
+}
+
+
+/* =========================================================
+   DELETE SERIES
+========================================================= */
+
+function deleteSeries(id) {
+
+    const series =
+        state.series.find(
+            item => item.id === id
+        );
+
+
+    if (!series) return;
+
+
+    const confirmed =
+        confirm(
+            `حذف "${series.name}"؟`
+        );
+
+
+    if (!confirmed) return;
+
+
+    state.series =
+        state.series.filter(
+            item => item.id !== id
+        );
+
+
+    delete state.ratings[id];
+
+
+    saveState();
+
+    renderSavedSeries();
+
+    renderTracking();
+
+    updateHomeStats();
+
+    showToast(
+        "تم حذف الـ Series"
+    );
+
+}
+
+
+/* =========================================================
+   HOME ANIMATION
+========================================================= */
+
+let homeSpeed = 1;
+
+let homeAnimationIndex = 0;
+
+
+function setHomeSpeed(
+    speed,
+    button
+) {
+
+    homeSpeed = speed;
+
+
+    document
+        .querySelectorAll(
+            "#section-home .speed-btn"
+        )
+        .forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    renderHomeAnimation();
+
+}
+
+
+function renderHomeAnimation() {
+
+    const visual =
+        document.getElementById(
+            "homeAnimationVisual"
+        );
+
+    if (!visual) return;
+
+
+    const move =
+        MOVES[
+            homeAnimationIndex %
+            MOVES.length
+        ];
+
+
+    document.getElementById(
+        "homeAnimationName"
+    ).textContent =
+        move.en;
+
+
+    visual.innerHTML =
+        poseSVG(
+            move,
+            true,
+            true
+        );
+
+
+    visual.querySelectorAll(
+        ".animated-part"
+    )
+    .forEach(part => {
+
+        part.style.animationDuration =
+            `${1 / homeSpeed}s`;
+
+    });
+
+}
+
+
+setInterval(() => {
+
+    if (
+        document
+            .getElementById(
+                "section-home"
+            )
+            ?.classList
+            .contains("active")
+    ) {
+
+        homeAnimationIndex++;
+
+        renderHomeAnimation();
+
+    }
+
+},1400);
+
+
+/* =========================================================
+   DICTIONARY
+========================================================= */
+
+function renderDictionary() {
+
+    const container =
+        document.getElementById(
+            "dictionaryList"
+        );
+
+    if (!container) return;
+
+
+    const search =
+        (
+            document
+                .getElementById(
+                    "dictionarySearch"
+                )
+                ?.value || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    const list =
+        MOVES.filter(move => {
+
+            if (!search) return true;
+
+
+            const custom =
+                state.customNames[
+                    move.id
+                ] || "";
+
+
+            return (
+
+                move.ar
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                move.en
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                custom
+                    .toLowerCase()
+                    .includes(search)
+
+            );
+
+        });
+
+
+    container.innerHTML =
+        list
+            .map(move => {
+
+                const custom =
+                    state.customNames[
+                        move.id
+                    ] || "لم يتم تحديد اسم خاص";
+
+
+                return `
+
+                    <div
+                        class="dictionary-row"
+                    >
+
+                        <div
+                            class="dictionary-main"
+                        >
+
+                            <strong>
+                                ${escapeHTML(move.ar)}
+                            </strong>
+
+                            <div
+                                class="standard"
+                            >
+                                ${escapeHTML(move.en)}
+                            </div>
+
+                            <small>
+                                اسم الكوتش:
+                                ${escapeHTML(custom)}
+                            </small>
+
+                        </div>
+
+
+                        <button
+                            class="dictionary-edit"
+                            onclick="editCoachName('${move.id}')"
+                        >
+                            ✏️ تعديل
+                        </button>
+
+                    </div>
+
+                `;
+
+            })
+            .join("");
+
+}
+
+
+/* =========================================================
+   EDIT COACH NAME
+========================================================= */
+
+let editingDictionaryId = null;
+
+
+function editCoachName(id) {
+
+    const move =
+        getMove(id);
+
+    if (!move) return;
+
+
+    editingDictionaryId =
+        id;
+
+
+    document.getElementById(
+        "coachNameInput"
+    ).value =
+        state.customNames[id] || "";
+
+
+    openModal(
+        "dictionaryModal"
+    );
+
+}
+
+
+function saveCoachName() {
+
+    if (!editingDictionaryId)
+        return;
+
+
+    const value =
+        document
+            .getElementById(
+                "coachNameInput"
+            )
+            .value
+            .trim();
+
+
+    if (value) {
+
+        state.customNames[
+            editingDictionaryId
+        ] = value;
+
+    } else {
+
+        delete state.customNames[
+            editingDictionaryId
+        ];
+
+    }
+
+
+    saveState();
+
+    closeModal(
+        "dictionaryModal"
+    );
+
+
+    renderDictionary();
+
+
+    showToast(
+        "تم حفظ اسم الكوتش ✏️"
+    );
+
+}
+
+
+/* =========================================================
+   RATING SYSTEM
+========================================================= */
+
+const RATING_OPTIONS = [
+
+    {
+        value:1,
+        label:"🔴 ما زلت أتردد"
+    },
+
+    {
+        value:2,
+        label:"🟡 أعرفها لكن ببطء"
+    },
+
+    {
+        value:3,
+        label:"🟢 عادية"
+    },
+
+    {
+        value:4,
+        label:"🔵 سريعة"
+    },
+
+    {
+        value:5,
+        label:"⭐ سريعة جداً / تلقائية"
+    }
+
+];
+
+
+function ratingOptionsHTML(
+    selected
+) {
+
+    return RATING_OPTIONS
+        .map(option => `
+
+            <option
+                value="${option.value}"
+                ${
+                    Number(selected) ===
+                    option.value
+                        ? "selected"
+                        : ""
+                }
+            >
+                ${option.label}
+            </option>
+
+        `)
+        .join("");
+
+}
+
+
+let ratingSeriesId = null;
+
+
+function openRating(seriesId) {
+
+    const series =
+        state.series.find(
+            item => item.id === seriesId
+        );
+
+
+    if (!series) return;
+
+
+    ratingSeriesId =
+        seriesId;
+
+
+    const rating =
+        state.ratings[seriesId] ||
+        {
+
+            speed:3,
+            stability:3,
+            instinct:3,
+            memory:3
+
+        };
+
+
+    document.getElementById(
+        "ratingTitle"
+    ).textContent =
+        `📈 ${series.name}`;
+
+
+    document.getElementById(
+        "ratingSpeed"
+    ).innerHTML =
+        ratingOptionsHTML(
+            rating.speed
+        );
+
+
+    document.getElementById(
+        "ratingStability"
+    ).innerHTML =
+        ratingOptionsHTML(
+            rating.stability
+        );
+
+
+    document.getElementById(
+        "ratingInstinct"
+    ).innerHTML =
+        ratingOptionsHTML(
+            rating.instinct
+        );
+
+
+    document.getElementById(
+        "ratingMemory"
+    ).innerHTML =
+        ratingOptionsHTML(
+            rating.memory
+        );
+
+
+    openModal(
+        "ratingModal"
+    );
+
+}
+
+
+function saveRating() {
+
+    if (!ratingSeriesId)
+        return;
+
+
+    state.ratings[
+        ratingSeriesId
+    ] = {
+
+        speed:
+            Number(
+                document.getElementById(
+                    "ratingSpeed"
+                ).value
+            ),
+
+        stability:
+            Number(
+                document.getElementById(
+                    "ratingStability"
+                ).value
+            ),
+
+        instinct:
+            Number(
+                document.getElementById(
+                    "ratingInstinct"
+                ).value
+            ),
+
+        memory:
+            Number(
+                document.getElementById(
+                    "ratingMemory"
+                ).value
+            ),
+
+        updatedAt:
+            new Date().toISOString()
+
+    };
+
+
+    saveState();
+
+    closeModal(
+        "ratingModal"
+    );
+
+
+    renderTracking();
+
+    renderSavedSeries();
+
+
+    showToast(
+        "📈 تم تحديث التقييم"
+    );
+
+}
+
+
+/* =========================================================
+   TRACKING
+========================================================= */
+
+function ratingIcon(value) {
+
+    const found =
+        RATING_OPTIONS.find(
+            option =>
+                option.value ===
+                Number(value)
+        );
+
+
+    return found
+        ? found.label.split(" ")[0]
+        : "—";
+
+}
+
+
+function renderTracking() {
+
+    const container =
+        document.getElementById(
+            "trackingList"
+        );
+
+    if (!container) return;
+
+
+    if (!state.series.length) {
+
+        container.innerHTML = `
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    📈
+                </div>
+
+                <h3>
+                    لا يوجد Tracking بعد
+                </h3>
+
+                <p>
+                    احفظي Series أولاً،
+                    وبعدها يمكنك تقييم السرعة
+                    والثبات والغريزة والذاكرة.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        state.series
+            .map(series => {
+
+                const rating =
+                    state.ratings[
+                        series.id
+                    ] ||
+                    {
+
+                        speed:0,
+                        stability:0,
+                        instinct:0,
+                        memory:0
+
+                    };
+
+
+                return `
+
+                    <div
+                        class="tracking-card"
+                    >
+
+                        <h3>
+                            🔥
+                            ${escapeHTML(series.name)}
+                        </h3>
+
+
+                        <div
+                            class="rating-grid"
+                        >
+
+                            <div
+                                class="rating-item"
+                            >
+
+                                <span>
+                                    السرعة
+                                </span>
+
+                                <div
+                                    class="rating-value"
+                                >
+                                    ${ratingIcon(
+                                        rating.speed
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="rating-item"
+                            >
+
+                                <span>
+                                    الثبات
+                                </span>
+
+                                <div
+                                    class="rating-value"
+                                >
+                                    ${ratingIcon(
+                                        rating.stability
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="rating-item"
+                            >
+
+                                <span>
+                                    الغريزة
+                                </span>
+
+                                <div
+                                    class="rating-value"
+                                >
+                                    ${ratingIcon(
+                                        rating.instinct
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="rating-item"
+                            >
+
+                                <span>
+                                    الذاكرة
+                                </span>
+
+                                <div
+                                    class="rating-value"
+                                >
+                                    ${ratingIcon(
+                                        rating.memory
+                                    )}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="btn btn-secondary btn-small"
+                            style="margin-top:10px;"
+                            onclick="openRating('${series.id}')"
+                        >
+                            ✏️ تعديل التقييم
+                        </button>
+
+                    </div>
+
+                `;
+
+            })
+            .join("");
+
+}
+
+
+/* =========================================================
+   CLASSES
+========================================================= */
+
+function renderClasses() {
+
+    const container =
+        document.getElementById(
+            "scheduleList"
+        );
+
+    if (!container) return;
+
+
+    const schedule =
+        Object.entries(
+            state.schedule
+        );
+
+
+    container.innerHTML =
+        schedule
+            .map(([key,classInfo]) => {
+
+                const present =
+                    !!state.attendance[key];
+
+
+                const details =
+                    state.classDetails[key] ||
+                    {
+
+                        movesCount:0,
+                        seriesCount:0
+
+                    };
+
+
+                return `
+
+                    <div
+                        class="class-card"
+                    >
+
+                        <div class="class-top">
+
+                            <div>
+
+                                <div
+                                    class="day-name"
+                                >
+                                    ${escapeHTML(
+                                        classInfo.day
+                                    )}
+                                </div>
+
+                                <div
+                                    class="class-time"
+                                >
+                                    ${escapeHTML(
+                                        classInfo.time
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                            <button
+                                class="
+                                    attendance-btn
+                                    ${
+                                        present
+                                            ? "present"
+                                            : "absent"
+                                    }
+                                "
+                                onclick="toggleAttendance('${key}')"
+                            >
+
+                                ${
+                                    present
+                                        ? "✓ حضرت"
+                                        : "✕ لم أحضر"
+                                }
+
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="class-details"
+                        >
+
+                            <div
+                                class="class-stat"
+                            >
+
+                                <small>
+                                    الحركات التي تعلمتها
+                                </small>
+
+                                <strong>
+                                    ${details.movesCount}
+                                </strong>
+
+                            </div>
+
+
+                            <div
+                                class="class-stat"
+                            >
+
+                                <small>
+                                    Series أضفتها
+                                </small>
+
+                                <strong>
+                                    ${details.seriesCount}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="btn btn-secondary btn-small"
+                            style="margin-top:9px;"
+                            onclick="editClassDetails('${key}')"
+                        >
+                            ✏️ تعديل تفاصيل الحصة
+                        </button>
+
+                    </div>
+
+                `;
+
+            })
+            .join("");
+
+}
+
+
+function toggleAttendance(key) {
+
+    state.attendance[key] =
+        !state.attendance[key];
+
+
+    saveState();
+
+    renderClasses();
+
+    updateHomeStats();
+
+
+    showToast(
+        state.attendance[key]
+            ? "✓ تم تسجيل الحضور"
+            : "تم إلغاء الحضور"
+    );
+
+}
+
+
+function editClassDetails(key) {
+
+    const current =
+        state.classDetails[key] ||
+        {
+
+            movesCount:0,
+            seriesCount:0
+
+        };
+
+
+    const moves =
+        prompt(
+            "كم حركة تعلمتِ في هذه الحصة؟",
+            current.movesCount
+        );
+
+
+    if (moves === null)
+        return;
+
+
+    const series =
+        prompt(
+            "كم Series أضفتِ في هذه الحصة؟",
+            current.seriesCount
+        );
+
+
+    if (series === null)
+        return;
+
+
+    state.classDetails[key] = {
+
+        movesCount:
+            Math.max(
+                0,
+                Number(moves) || 0
+            ),
+
+        seriesCount:
+            Math.max(
+                0,
+                Number(series) || 0
+            )
+
+    };
+
+
+    saveState();
+
+    renderClasses();
+
+
+    showToast(
+        "تم تحديث تفاصيل الحصة 📅"
+    );
+
+}
+
+
+/* =========================================================
+   PAYMENTS
+========================================================= */
+
+function renderPayments() {
+
+    const container =
+        document.getElementById(
+            "paymentList"
+        );
+
+    if (!container) return;
+
+
+    if (!state.payments.length) {
+
+        container.innerHTML = `
+
+            <div
+                class="empty-state"
+                style="padding:20px;"
+            >
+
+                <div
+                    class="empty-icon"
+                    style="font-size:25px;"
+                >
+                    💳
+                </div>
+
+                <p>
+                    لم تتم إضافة أي شهر بعد.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        state.payments
+            .map((payment,index) => {
+
+                return `
+
+                    <div
+                        class="payment-row"
+                    >
+
+                        <div>
+
+                            <strong>
+                                ${escapeHTML(
+                                    payment.label
+                                )}
+                            </strong>
+
+                            <span>
+                                — من 15/09/2026
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            class="
+                                payment-toggle
+                                ${
+                                    payment.paid
+                                        ? "paid"
+                                        : "unpaid"
+                                }
+                            "
+                            onclick="togglePayment(${index})"
+                        >
+
+                            ${
+                                payment.paid
+                                    ? "✓ تم الأداء"
+                                    : "لم يتم الأداء"
+                            }
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            })
+            .join("");
+
+}
+
+
+function addNextPaymentMonth() {
+
+    let nextDate;
+
+
+    if (!state.payments.length) {
+
+        nextDate =
+            new Date(
+                "2026-09-15T00:00:00"
+            );
+
+    } else {
+
+        const last =
+            state.payments[
+                state.payments.length - 1
+            ];
+
+
+        nextDate =
+            new Date(
+                last.date
+            );
+
+
+        nextDate.setMonth(
+            nextDate.getMonth() + 1
+        );
+
+    }
+
+
+    const label =
+        nextDate.toLocaleDateString(
+            "fr-FR",
+            {
+                month:"long",
+                year:"numeric"
+            }
+        );
+
+
+    state.payments.push({
+
+        date:
+            nextDate.toISOString(),
+
+        label,
+
+        paid:false
+
+    });
+
+
+    saveState();
+
+    renderPayments();
+
+
+    showToast(
+        "تمت إضافة شهر جديد 💳"
+    );
+
+}
+
+
+function togglePayment(index) {
+
+    if (
+        !state.payments[index]
+    ) return;
+
+
+    state.payments[index].paid =
+        !state.payments[index].paid;
+
+
+    saveState();
+
+    renderPayments();
+
+
+    showToast(
+        state.payments[index].paid
+            ? "✓ تم تسجيل الأداء"
+            : "تم إلغاء الأداء"
+    );
+
+}
+
+
+/* =========================================================
+   HOME STATS
+========================================================= */
+
+function updateHomeStats() {
+
+    const moveCount =
+        Object.values(
+            state.learned
+        )
+        .filter(Boolean)
+        .length;
+
+
+    const seriesCount =
+        state.series.length;
+
+
+    const classesCount =
+        Object.values(
+            state.attendance
+        )
+        .filter(Boolean)
+        .length;
+
+
+    document.getElementById(
+        "homeMoveCount"
+    ).textContent =
+        moveCount;
+
+
+    document.getElementById(
+        "homeSeriesCount"
+    ).textContent =
+        seriesCount;
+
+
+    document.getElementById(
+        "homeClassesCount"
+    ).textContent =
+        classesCount;
+
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+function openSettings() {
+
+    openModal(
+        "settingsModal"
+    );
+
+}
+
+
+function exportData() {
+
+    const data =
+        JSON.stringify(
+            state,
+            null,
+            2
+        );
+
+
+    const blob =
+        new Blob(
+            [data],
+            {
+                type:"application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(
+            blob
+        );
+
+
+    const a =
+        document.createElement("a");
+
+
+    a.href = url;
+
+    a.download =
+        "boxing-memory-backup.json";
+
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+
+    showToast(
+        "📤 تم تصدير بياناتك"
+    );
+
+}
+
+
+function importData(event) {
+
+    const file =
+        event.target.files?.[0];
+
+
+    if (!file) return;
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = () => {
+
+        try {
+
+            const imported =
+                JSON.parse(
+                    reader.result
+                );
+
+
+            state = {
+
+                ...structuredClone(
+                    defaultState
+                ),
+
+                ...imported
+
+            };
+
+
+            saveState();
+
+
+            renderAll();
+
+            showToast(
+                "📥 تم استرجاع البيانات"
+            );
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showToast(
+                "الملف غير صالح ❌"
+            );
+
+        }
+
+    };
+
+
+    reader.readAsText(file);
+
+}
+
+
+function resetAllData() {
+
+    const confirmed =
+        confirm(
+            "متأكدة أنك تريدين حذف كل البيانات؟"
+        );
+
+
+    if (!confirmed)
+        return;
+
+
+    localStorage.removeItem(
+        STORAGE_KEY
+    );
+
+
+    sessionStorage.removeItem(
+        "boxing_builder"
+    );
+
+
+    state =
+        structuredClone(
+            defaultState
+        );
+
+
+    builder = [];
+
+
+    renderAll();
+
+    closeModal(
+        "settingsModal"
+    );
+
+
+    showToast(
+        "تم حذف البيانات"
+    );
+
+}
+
+
+/* =========================================================
+   RENDER EVERYTHING
+========================================================= */
+
+function renderAll() {
+
+    renderCategories();
+
+    renderMoves();
+
+    renderBuilder();
+
+    renderSavedSeries();
+
+    renderDictionary();
+
+    renderTracking();
+
+    renderClasses();
+
+    renderPayments();
+
+    updateHomeStats();
+
+    renderHomeAnimation();
+
+}
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+loadBuilderSession();
+
+try {
+    renderAll();
+} catch (error) {
+    document.body.innerHTML = `
+        <div style="padding:30px;font-family:Arial;direction:ltr;background:white;color:#222;">
+            <h2>JavaScript Error</h2>
+            <pre style="white-space:pre-wrap;color:red;">${error.stack || error}</pre>
+        </div>
+    `;
+    console.error(error);
+}
+
+
+/* =========================================================
+   SERVICE WORKER
+========================================================= */
+
+if (
+    "serviceWorker" in navigator
+) {
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            navigator.serviceWorker
+                .register("./sw.js")
+                .then(
+                    registration => {
+
+                        console.log(
+                            "Service Worker registered:",
+                            registration.scope
+                        );
+
+                    }
+                )
+                .catch(
+                    error => {
+
+                        console.warn(
+                            "Service Worker failed:",
+                            error
+                        );
+
+                    }
+                );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   KEYBOARD / ESC
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key !== "Escape")
+            return;
+
+
+        document
+            .querySelectorAll(
+                ".modal-backdrop.open"
+            )
+            .forEach(modal => {
+
+                modal.classList.remove(
+                    "open"
+                );
+
+            });
+
+    }
+);
+
+
+/* =========================================================
+   PREVENT ACCIDENTAL FORM SUBMIT
+========================================================= */
+
+document.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
